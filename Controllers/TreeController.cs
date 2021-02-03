@@ -14,6 +14,7 @@ namespace WebApplication1.Controllers
         public ActionResult Index()
         {
             Database database = new Database();
+            database.Add(70, 3);
             return View(database.CreateList());
         }
 

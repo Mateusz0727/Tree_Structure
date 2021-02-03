@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Configuration;
-using System.Data.OleDb;
 using System.Diagnostics;
 using System.Data.SqlClient;
 using System.Collections.Generic;
@@ -66,7 +65,7 @@ namespace WebApplication1.Models
             for (int i = 2; i < GetMaxId()+1; i++)
             {
                 list.AddChild(GetData(i), GetParentId(i), GetHeight(i));
-                Debug.WriteLine(list.Children[i-2].Data); 
+              
             }
             return list;
         }
@@ -84,6 +83,16 @@ namespace WebApplication1.Models
             var dataCommand = new SqlCommand();
             dataCommand.Connection = sqlConnection;
             dataCommand.CommandText = "DELETE FROM Tree WHERE Id = "+id;
+            dataCommand.ExecuteNonQuery();
+        }
+
+        public void Add(int data,int parentId)
+        {
+            int id = GetMaxId() + 2;
+            int height = GetHeight(parentId) + 1;
+            var dataCommand = new SqlCommand();
+            dataCommand.Connection = sqlConnection;
+            dataCommand.CommandText = "INSERT INTO Tree Values("+id+","+data+","+height+","+parentId+")";
             dataCommand.ExecuteNonQuery();
         }
 
