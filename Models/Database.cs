@@ -12,12 +12,14 @@ namespace WebApplication1.Models
     public class Database
     {
         readonly SqlConnection sqlConnection;
+
         public Database()
         {
             sqlConnection = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Database;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             sqlConnection.Open();
             Debug.WriteLine("connected to database");
         }
+
         public int GetMaxId()
         {
             var dataCommand = new SqlCommand();
@@ -27,6 +29,7 @@ namespace WebApplication1.Models
             int id = Convert.ToInt32(dataCommand.ExecuteScalar());
             return id;
         }
+
         public int GetData(int id)
         {
             var dataCommand = new SqlCommand();
@@ -36,6 +39,7 @@ namespace WebApplication1.Models
             int data = Convert.ToInt32(dataCommand.ExecuteScalar());
             return data;
         }
+
         public int GetParentId(int id)
         {
             var dataCommand = new SqlCommand();
@@ -45,6 +49,7 @@ namespace WebApplication1.Models
             int parentId = Convert.ToInt32(dataCommand.ExecuteScalar());
             return parentId;
         }
+
         public int GetHeight(int id)
         {
             var dataCommand = new SqlCommand();
@@ -54,6 +59,7 @@ namespace WebApplication1.Models
             int height = Convert.ToInt32(dataCommand.ExecuteScalar());
             return height;
         }
+
         public TreeModel<int> CreateList()
         {
             TreeModel<int> list = new TreeModel<int>(GetData(1),0,1);
@@ -64,6 +70,7 @@ namespace WebApplication1.Models
             }
             return list;
         }
+
         public void EditingData(int id,int data)
         {
             var dataCommand = new SqlCommand();
@@ -71,6 +78,7 @@ namespace WebApplication1.Models
             dataCommand.CommandText = "UPDATE Tree SET Data ="+data+" Where id=" + id;
             dataCommand.ExecuteNonQuery();            
         }
+
         public void Delete(int id)
         {
             var dataCommand = new SqlCommand();
@@ -79,13 +87,6 @@ namespace WebApplication1.Models
             dataCommand.ExecuteNonQuery();
         }
 
-     /*   public static string ConnectionString
-        {
-            get
-            {
-                return  ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-            }
-            set { }
-        }*/
+     
     }
 }
