@@ -1,0 +1,57 @@
+﻿@model IEnumerable<WebApplication1.Models.TreeModel<int>>
+@using System.Linq;
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<p>
+   
+</p>
+<button  name="button" value="create"  asp-action="Create">Dodaj</button>
+
+
+<ul>
+    @foreach (var item in Model)
+    {
+        
+        if (item.Height == 1)
+        {
+           
+                <li>@Html.DisplayFor(modelItem => item.Data)</li>
+            
+        }
+        if (item.Height == 2)
+        {
+           
+                <ul>
+                    <li>@Html.DisplayFor(modelItem => item.Data)</li>
+                </ul>
+           
+        }
+        if (item.Height == 3)
+        {
+        
+                <ul>
+                    <ul>
+                        <li>@Html.DisplayFor(modelItem => item.Data)</li>
+                    </ul>
+                </ul>
+          
+        }
+        if (item.Height == 4)
+        {
+         
+                <ul>
+                    <ul>
+                        <ul>
+                            <li>@Html.DisplayFor(modelItem => item.Data) </li>
+                        </ul>
+                    </ul>
+                </ul>
+        
+        }
+       
+    }
+</ul>
+
