@@ -23,7 +23,7 @@
                     </option>
                 }
             </select>
-            <button name="button" value="create" asp-action="Create">Dodaj węzeł</button>
+            <button name="AddChildButton" value="create" asp-action="Create">Dodaj węzeł</button>
         </label><br />
 
         <label>
@@ -36,12 +36,13 @@
                     </option>
                 }
             </select>
-            <button>Przenieś węzeł</button>
+            <button name="TransferNodeButton" asp-action="TransferNode">Przenieś węzeł</button>
         </label><br />
 
         <label>
             Nowa nazwa węzła:
-            <input type="text" name="newNodeName" /><button>Zmień nazwę</button><br />
+            <input type="text" name="newNodeName" />
+        <button name="newNodeNameButton" asp-action="NewNodeName" >Zmień nazwę</button><br />
         </label><br />
 
         <label>
